@@ -1,0 +1,58 @@
+[
+    {
+        "id": 1,
+        "name": "beauty products",
+        "image": "https://picsum.photos/200/300",
+        "rating": 4.5,
+        "price": 29.99
+    },
+    {
+        "id": 2,
+        "name": "silver utensils",
+        "image": "https://picsum.photos/200/300",
+        "rating": 3.8,
+        "price": 19.99
+    },
+    {
+        "id": 3,
+        "name": "plastic bottle",
+        "image": "https://picsum.photos/200/300",
+        "rating": 4.5,
+        "price": 29.99
+    },
+    {
+        "id": 4,
+        "name": "furniture",
+        "image": "https://picsum.photos/200/300",
+        "rating": 3.8,
+        "price": 19.99
+    },
+    {
+        "id": 5,
+        "name": "dress",
+        "image": "https://picsum.photos/200/300",
+        "rating": 4.5,
+        "price": 29.99
+    },
+    {
+        "id": 6,
+        "name": "cosmetics",
+        "image": "https://picsum.photos/200/300",
+        "rating": 3.8,
+        "price": 19.99
+    },
+    {
+        "id": 7,
+        "name": "Shoes",
+        "image": "https://picsum.photos/200/300",
+        "rating": 4.5,
+        "price": 29.99
+    },
+    {
+        "id": 8,
+        "name": "Watch",
+        "image": "https://picsum.photos/200/300",
+        "rating": 3.8,
+        "price": 19.99
+    }
+]
