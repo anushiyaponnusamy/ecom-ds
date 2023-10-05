@@ -5,6 +5,7 @@ const fs = require('fs');
 const app = express();
 const PORT = 3000;
 const bodyParser = require('body-parser');
+const { publicDecrypt } = require('crypto');
 
 app.use(bodyParser.json());
 
@@ -47,45 +48,39 @@ app.get('/search-products/:search', (req, res) => {
 });
 
 
+
 app.post('/purchase', (req, res) => {
-    console.log("req.body", req.body)
     const { productId } = req.body;
-    // fs.readFile('purchases.json', 'utf8', (err, data) => {
-    //     if (err) {
-    //         console.error('Error reading purchases file:', err);
-    //         res.status(500).json({ error: 'Internal Server Error' });
-    //         return;
-    //     }
 
-    let purchases = [];
-    //     if (data.length > 0) {
-    //         try {
-    //             purchases = JSON.parse(data);
-    //         } catch (error) {
-    //             console.error('Error parsing purchases data:', error);
-    //             res.status(500).json({ error: 'Internal Server Error' });
-    //             return;
-    //         }
-
-    //         const existingPurchase = purchases.find(purchase => purchase.productId === productId);
-    //         if (existingPurchase) {
-    //             return res.json({ message: 'Product already purchased.' });
-    //         }
-
-    //     } else {
-    //         console.log()
-    purchases.push({ productId, timestamp: new Date() });
-
-    fs.writeFile('purchases.json', JSON.stringify(purchases), (err) => {
+    fs.readFile('purchases.json', 'utf8', (err, data) => {
         if (err) {
-            console.error('Error writing purchases file:', err);
+            console.error('Error reading purchases file:', err);
             res.status(500).json({ error: 'Internal Server Error' });
             return;
         }
-        res.json({ message: 'Purchase successful!' });
+
+        let purchases = [];
+
+        if (data.length > 0) {
+            try {
+                purchases = JSON.parse(data);
+            } catch (error) {
+                console.error('Error parsing purchases data:', error);
+                res.status(500).json({ error: 'Internal Server Error' });
+                return;
+            }
+        }
+
+        purchases.push({ productId, timestamp: new Date() });
+        fs.writeFile('purchases.json', JSON.stringify(purchases), (err) => {
+            if (err) {
+                console.error('Error writing purchases file:', err);
+                res.status(500).json({ error: 'Internal Server Error' });
+                return;
+            }
+            res.json({ message: 'Purchase successful!' });
+        });
     });
-    // }
-    // });
 });
 
 app.get('/check-purchase/:productId', (req, res) => {
